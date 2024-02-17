@@ -48,6 +48,16 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9;
   }
+
+  h1 {
+    @apply text-xl font-bold;
+  }
+  h2 {
+    @apply text-lg font-bold;
+  }
+  p {
+    @apply text-base;
+  }
 }
 
 @layer base {

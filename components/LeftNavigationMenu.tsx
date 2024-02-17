@@ -17,20 +17,37 @@ const LeftNavigationMenu: React.FC = () => {
 
   const navigationItems: MenuItem[] = [
     {
-      icon: <Icons.gitHub width={24} />,
-      title: "Dashboard",
+      icon: <Icons.barChart width={24} />,
+      title: "Resumen",
       href: "/dashboard",
     },
-    { icon: <Icons.gitHub width={24} />, title: "Settings", href: "/settings" },
+    {
+      icon: <Icons.folder width={24} />,
+      title: "Proyectos",
+      href: "/project",
+    },
+    {
+      icon: <Icons.wallet width={24} />,
+      title: "Finanzas",
+      href: "/finance",
+    },
+    {
+      icon: <Icons.contact width={24} />,
+      title: "Clientes",
+      href: "/client",
+    },
+    {
+      icon: <Icons.users width={24} />,
+      title: "Usuarios",
+      href: "/user",
+    },
   ];
 
   const isActive = (href: string) => pathname === href;
 
   return (
-    <nav className="bg-background shadow-md shadow-secondary-foreground h-screen w-[400px] py-5 z-10">
-      <h2 className="text-bold font-bold text-xl px-5 py-5">
-        PLATAFORMA SIE&H
-      </h2>
+    <nav className="flex flex-col bg-background shadow-md shadow-secondary-foreground h-screen w-[285px] pt-5 z-10">
+      <h1 className="px-5 py-5">PLATAFORMA SIE&H</h1>
       <ul className="flex flex-col">
         {navigationItems.map((item, index) => (
           <li key={index}>
@@ -41,23 +58,36 @@ const LeftNavigationMenu: React.FC = () => {
                 className="w-full rounded-none justify-start text-lg py-8 gap-3"
               >
                 {item.icon}
-                {item.title}
+                <h2>{item.title}</h2>
               </Button>
             </Link>
           </li>
         ))}
       </ul>
 
-      <a href="/api/auth/logout">
-        <Button
-          variant="ghost"
-          size="lg"
-          className="w-full rounded-none justify-start text-lg py-8 gap-3"
-        >
-          <Icons.gitHub width={24} />
-          Logout
-        </Button>
-      </a>
+      <section className="mt-auto">
+        <Link href="/settings">
+          <Button
+            variant={`${isActive("/settings") ? "default" : "ghost"}`}
+            size="lg"
+            className="w-full rounded-none justify-start py-8 gap-3"
+          >
+            <Icons.settings width={24} />
+            <h2>Ajustes</h2>
+          </Button>
+        </Link>
+
+        <a href="/api/auth/logout">
+          <Button
+            variant="ghost"
+            size="lg"
+            className="w-full rounded-none justify-start py-8 gap-3"
+          >
+            <Icons.logOut width={24} />
+            <h2>Cerrar Sesión</h2>
+          </Button>
+        </a>
+      </section>
     </nav>
   );
 };

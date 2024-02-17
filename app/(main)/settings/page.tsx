@@ -4,13 +4,12 @@ import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
 
 async function SettingsPage() {
   const session = await getSession();
-  console.log(session?.user);
 
   return (
     <div>
-      <h2 className="text-bold font-bold text-xl px-5 py-5">AJUSTES</h2>
+      <h1 className="px-5 py-5">AJUSTES</h1>
       <section className="flex p-5 gap-2.5">
-        <p className="w-[200px] font-bold">Perfil</p>
+        <h2 className="w-[200px] font-bold">Perfil</h2>
         <span className="bg-primary bg min-w-0.5" />
         <div className="flex gap-5 flex-col">
           <div>
@@ -32,7 +31,7 @@ async function SettingsPage() {
         </div>
       </section>
       <section className="flex p-5 gap-2.5">
-        <p className="w-[200px] font-bold">Preferencias</p>
+        <h2 className="w-[200px] font-bold">Preferencias</h2>
         <span className="bg-primary bg min-w-0.5" />
         <div className="flex gap-5 flex-col">
           <div>
