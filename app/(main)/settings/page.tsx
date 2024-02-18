@@ -1,9 +1,20 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import React from "react";
 import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import {
+  getAuth0User,
+  getAuth0UserRoles,
+  getAuth0ManagementApiToken,
+} from "@/services/auth0";
+import { englishRoleToSpanish } from "@/lib/utils";
 
 async function SettingsPage() {
   const session = await getSession();
+  const token = await getAuth0ManagementApiToken();
+  const userRoles = await getAuth0UserRoles(
+    token.access_token,
+    session?.user.sub
+  );
 
   return (
     <div>
@@ -27,6 +38,18 @@ async function SettingsPage() {
           <div>
             <p>Contrasena</p>
             <p className="font-bold">•••••</p>
+          </div>
+          <div>
+            <p>Permisos</p>
+            <div className="flex gap-2.5">
+              {userRoles.map((role: any) => {
+                return (
+                  <p key={role.id} className="font-bold">
+                    {englishRoleToSpanish(role.name)}
+                  </p>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
