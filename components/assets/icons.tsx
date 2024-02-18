@@ -8,6 +8,7 @@ import {
   Contact,
   Users,
   LogOut,
+  HelpCircle,
   type XIcon as LucideIcon,
 } from "lucide-react";
 
@@ -23,4 +24,5 @@ export const Icons = {
   contact: Contact,
   users: Users,
   logOut: LogOut,
+  helpCircle: HelpCircle,
 };

@@ -41,6 +41,11 @@ const LeftNavigationMenu: React.FC = () => {
       title: "Usuarios",
       href: "/user",
     },
+    {
+      icon: <Icons.helpCircle width={24} />,
+      title: "Ayuda",
+      href: "/help",
+    },
   ];
 
   const isActive = (href: string) => pathname === href;
