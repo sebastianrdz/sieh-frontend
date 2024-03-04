@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { Icons } from "@/components/assets/icons";
+import { signOut } from "next-auth/react";
 
 interface MenuItem {
   icon: JSX.Element;
@@ -82,16 +83,15 @@ const LeftNavigationMenu: React.FC = () => {
           </Button>
         </Link>
 
-        <a href="/api/auth/logout">
-          <Button
-            variant="ghost"
-            size="lg"
-            className="w-full rounded-none justify-start py-8 gap-3"
-          >
-            <Icons.logOut width={24} />
-            <h2>Cerrar Sesión</h2>
-          </Button>
-        </a>
+        <Button
+          variant="ghost"
+          size="lg"
+          className="w-full rounded-none justify-start py-8 gap-3"
+          onClick={() => signOut()}
+        >
+          <Icons.logOut width={24} />
+          <h2>Cerrar Sesión</h2>
+        </Button>
       </section>
     </nav>
   );

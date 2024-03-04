@@ -1,20 +1,11 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import React from "react";
-import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
-import {
-  getAuth0User,
-  getAuth0UserRoles,
-  getAuth0ManagementApiToken,
-} from "@/services/auth0";
+import { getServerSession } from "next-auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 import { englishRoleToSpanish } from "@/lib/utils";
 
-async function SettingsPage() {
-  const session = await getSession();
-  const token = await getAuth0ManagementApiToken();
-  const userRoles = await getAuth0UserRoles(
-    token.access_token,
-    session?.user.sub
-  );
+export default async function SettingsPage() {
+  const session = await getServerSession(options);
 
   return (
     <div>
@@ -25,15 +16,11 @@ async function SettingsPage() {
         <div className="flex gap-5 flex-col">
           <div>
             <p>Nombre</p>
-            <p className="font-bold">
-              {session?.user ? session?.user.nickname : "indefinido*"}
-            </p>
+            <p className="font-bold">{session?.user?.name}</p>
           </div>
           <div>
             <p>Correo</p>
-            <p className="font-bold">
-              {session?.user ? session?.user.email : "indefinido*"}
-            </p>
+            <p className="font-bold">{session?.user?.name}</p>
           </div>
           <div>
             <p>Contrasena</p>
@@ -42,10 +29,10 @@ async function SettingsPage() {
           <div>
             <p>Permisos</p>
             <div className="flex gap-2.5">
-              {userRoles.map((role: any) => {
+              {session?.user?.roles?.map((role: string, index: number) => {
                 return (
-                  <p key={role.id} className="font-bold">
-                    {englishRoleToSpanish(role.name)}
+                  <p key={index} className="font-bold">
+                    {englishRoleToSpanish(role)}
                   </p>
                 );
               })}
@@ -70,5 +57,3 @@ async function SettingsPage() {
     </div>
   );
 }
-
-export default withPageAuthRequired(SettingsPage, { returnTo: "/settings" });

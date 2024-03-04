@@ -4,7 +4,6 @@ const BASE_URL = 'https://sieh-test.us.auth0.com';
 
 export const getAuth0ManagementApiToken = async () => {
   try {
-    
     const response = await axios.post(`${BASE_URL}/oauth/token`, {
       headers: {
         // Authorization: `Bearer ${token}`,
