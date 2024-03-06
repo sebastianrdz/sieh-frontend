@@ -9,6 +9,7 @@ import {
   Users,
   LogOut,
   HelpCircle,
+  ChevronDown,
   type XIcon as LucideIcon,
 } from "lucide-react";
 
@@ -25,4 +26,5 @@ export const Icons = {
   users: Users,
   logOut: LogOut,
   helpCircle: HelpCircle,
+  ChevronDown: ChevronDown,
 };
