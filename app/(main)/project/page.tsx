@@ -7,95 +7,93 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
-  CardFooter,
 } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-type Status = "Activo" | "Terminado" | "Cotizacion";
-interface Project {
-  id: string;
-  name: string;
-  status: Status;
-  date: string;
-  description: string;
-}
-
-const projects: Project[] = [
+const projects: IProject[] = [
   {
     id: "1",
-    name: "Jumex",
+    name: "jumex",
     status: "Activo",
     date: "Ene 17 - Mar 3",
     description: "Deploy your new project in one-click.",
   },
   {
     id: "2",
-    name: "CEMEX",
+    name: "cemex",
     status: "Activo",
     date: "Ene 17 - Mar 3",
     description: "Deploy your new project in one-click.",
   },
   {
     id: "3",
-    name: "Amazon",
+    name: "amazon",
     status: "Cotizacion",
     date: "Ene 17 - Mar 3",
     description: "Deploy your new project in one-click.",
   },
   {
     id: "4",
-    name: "Google",
+    name: "google",
     status: "Cotizacion",
     date: "Ene 17 - Mar 3",
     description: "Deploy your new project in one-click.",
   },
   {
     id: "5",
-    name: "Meta",
+    name: "meta",
     status: "Terminado",
     date: "Ene 17 - Mar 3",
     description: "Deploy your new project in one-click.",
   },
 ];
 
+const filterDropdownValues: IFilterDropdownValue[] = [
+  {
+    name: "Todo",
+  },
+  {
+    name: "Activo",
+  },
+  {
+    name: "Terminado",
+  },
+  {
+    name: "Cotizacion",
+  },
+];
+
+const getStatusColor = (status: Status) => {
+  switch (status) {
+    case "Activo":
+      return "bg-green-500";
+    case "Terminado":
+      return "bg-red-500";
+    case "Cotizacion":
+      return "bg-primary";
+  }
+};
+
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<string>("Todo");
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
+  const [filteredProjects, setFilteredProjects] =
+    useState<IProject[]>(projects);
 
   useEffect(() => {
-    const temp: Project[] = projects.filter((project) => {
+    const temp: IProject[] = projects.filter((project) => {
       if (filter === "Todo") return true;
       else return project.status === filter;
     });
     setFilteredProjects(temp);
   }, [filter]);
-
-  const getStatusColor = (status: Status) => {
-    switch (status) {
-      case "Activo":
-        return "bg-green-500";
-      case "Terminado":
-        return "bg-red-500";
-      case "Cotizacion":
-        return "bg-primary";
-    }
-  };
 
   return (
     <div>
@@ -111,19 +109,19 @@ export default function ProjectsPage() {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-36">
-            <DropdownMenuGroup className="">
-              <DropdownMenuItem onClick={() => setFilter("Todo")}>
-                <p>Todos</p>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setFilter("Activo")}>
-                <p>Activo</p>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setFilter("Terminado")}>
-                <p>Terminado</p>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setFilter("Cotizacion")}>
-                <p>Cotizacion</p>
-              </DropdownMenuItem>
+            <DropdownMenuGroup>
+              {filterDropdownValues.map(
+                (value: IFilterDropdownValue, index) => {
+                  return (
+                    <DropdownMenuItem
+                      key={index}
+                      onClick={() => setFilter(value.name)}
+                    >
+                      <p>{value.name}</p>
+                    </DropdownMenuItem>
+                  );
+                }
+              )}
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -131,7 +129,7 @@ export default function ProjectsPage() {
 
       <section className="p-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
         {filteredProjects.map((project) => (
-          <Link key={project.id} href={`projects/${project.name}`}>
+          <Link key={project.id} href={`project/${project.name}/proposal`}>
             <Card className="w-fill cursor-pointer min-h-[150px]">
               <CardHeader>
                 <div className="flex gap-1 align-middle">
