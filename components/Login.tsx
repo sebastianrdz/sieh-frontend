@@ -100,6 +100,7 @@ import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Icons } from "./assets/icons";
+import os from "os";
 
 type Props = {
   className?: string;
@@ -123,6 +124,7 @@ const formSchema = z.object({
 
 export default function Login(props: Props) {
   const router = useRouter();
+  const hostname = os.hostname();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -140,7 +142,11 @@ export default function Login(props: Props) {
       redirect: false,
     });
     if (!res?.error) {
-      router.push(props.callbackUrl ?? "http://localhost:3000");
+      router.push(
+        props.callbackUrl ?? hostname === "localhost"
+          ? "http://localhost:3000"
+          : "https://sieh-frontend-dev.vercel.app"
+      );
     }
   }
 
