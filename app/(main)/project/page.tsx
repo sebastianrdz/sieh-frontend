@@ -104,7 +104,7 @@ export default function ProjectsPage() {
             <div className="w-36 flex justify-start">
               <Button className="gap-1 shadow-lg" variant="outline">
                 <p className="font-bold">{filter}</p>
-                <Icons.ChevronDown />
+                <Icons.chevronDown />
               </Button>
             </div>
           </DropdownMenuTrigger>
@@ -151,7 +151,7 @@ export default function ProjectsPage() {
         <Card className="w-fill cursor-pointer min-h-[150px] shadow-none border-dashed">
           <CardDescription className="h-full font-bold flex flex-col justify-center items-center">
             Nuevo Proyecto
-            <Icons.Plus />
+            <Icons.plus />
           </CardDescription>
         </Card>
       </section>

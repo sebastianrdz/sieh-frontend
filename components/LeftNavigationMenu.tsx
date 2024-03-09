@@ -94,7 +94,7 @@ const LeftNavigationMenu: React.FC = () => {
         className="rounded-full mt-auto mx-auto"
         onClick={() => setIsMenuCompact(!isMenuCompact)}
       >
-        <Icons.ChevronLeft
+        <Icons.chevronLeft
           className={`min-w-6 ${isMenuCompact && "rotate-180"}`}
         />
       </Button>

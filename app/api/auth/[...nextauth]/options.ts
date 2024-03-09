@@ -1,3 +1,4 @@
+import { login } from "@/lib/auth";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -6,15 +7,24 @@ export const options: NextAuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        username: { label: "Email", type: "text", placeholder: "your email" },
+        email: { label: "Email", type: "text", placeholder: "your email" },
         password: { label: "Password", type: "password", placeholder: "your password"},
       },
       async authorize(credentials) {
-        const user = { id: "123", name: "admin", email: "admin@test.com", password: "admin", roles: ["admin"]};
-        if(credentials?.username === user.email && credentials?.password === user.password) {
+        if(!credentials?.email || !credentials?.password) {
+          return null;
+        }
+        try {
+          const user = login(credentials.email, credentials.password);
           return user;
-        } else return null;
+        } catch (e) {
+          console.log(e);
+          return null
+        }
       }
       })
   ],
+  pages: {
+    signIn: "/sign-in",
+  }
 }
