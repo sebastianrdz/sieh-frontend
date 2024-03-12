@@ -112,7 +112,7 @@ export const LeftNavigationMenu: React.FC = () => {
   return (
     <nav
       className={cn(
-        "flex flex-col transition-all duration-200 overflow-hidden bg-background shadow-md shadow-secondary-foreground h-screen w-[250px] pt-5 z-10 ",
+        "flex flex-col transition-all duration-200 overflow-hidden bg-background shadow-md shadow-secondary-foreground w-[250px] pt-5 z-10 ",
         isMenuCompact && "w-[70px] md:w-[80px]"
       )}
     >

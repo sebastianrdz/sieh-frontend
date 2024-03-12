@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex ">
+    <div className="flex">
       <LeftNavigationMenu />
       <main className="flex-1 pt-5 h-screen ">{children}</main>
     </div>
