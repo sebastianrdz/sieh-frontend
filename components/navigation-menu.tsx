@@ -94,7 +94,7 @@ const NavigationMenuButton = ({
 };
 
 export const LeftNavigationMenu: React.FC = () => {
-  const [isMenuCompact, setIsMenuCompact] = useState(false);
+  const [isMenuCompact, setIsMenuCompact] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
