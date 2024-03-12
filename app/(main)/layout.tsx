@@ -1,5 +1,5 @@
+import { LeftNavigationMenu } from "@/components/navigation-menu";
 import React from "react";
-import LeftNavigationMenu from "@/components/LeftNavigationMenu";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,9 +7,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex">
+    <div className="flex ">
       <LeftNavigationMenu />
-      <main className="flex-1 pt-5">{children}</main>
+      <main className="flex-1 pt-5 h-screen ">{children}</main>
     </div>
   );
 };

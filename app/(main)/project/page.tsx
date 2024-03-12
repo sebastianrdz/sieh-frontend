@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import ProjectCard from "./project-card";
 
 const projects: IProject[] = [
   {
@@ -71,17 +72,6 @@ const filterDropdownValues: IFilterDropdownValue[] = [
   },
 ];
 
-const getStatusColor = (status: Status) => {
-  switch (status) {
-    case "Activo":
-      return "bg-green-500";
-    case "Terminado":
-      return "bg-red-500";
-    case "Cotizacion":
-      return "bg-primary";
-  }
-};
-
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<string>("Todo");
   const [filteredProjects, setFilteredProjects] =
@@ -96,19 +86,20 @@ export default function ProjectsPage() {
   }, [filter]);
 
   return (
-    <div>
+    <div className="flex flex-col h-full">
       <h1 className="px-5 py-5">PROYECTOS</h1>
+
       <section className="p-5">
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className="w-36 flex justify-start">
+            <div className="flex justify-start">
               <Button className="gap-1 shadow-lg" variant="outline">
                 <p className="font-bold">{filter}</p>
                 <Icons.chevronDown />
               </Button>
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-36">
+          <DropdownMenuContent align="start" className="w-36">
             <DropdownMenuGroup>
               {filterDropdownValues.map(
                 (value: IFilterDropdownValue, index) => {
@@ -127,28 +118,11 @@ export default function ProjectsPage() {
         </DropdownMenu>
       </section>
 
-      <section className="p-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+      <section className="p-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 overflow-scroll">
         {filteredProjects.map((project) => (
-          <Link key={project.id} href={`project/${project.name}/proposal`}>
-            <Card className="w-fill cursor-pointer min-h-[150px]">
-              <CardHeader>
-                <div className="flex gap-1 align-middle">
-                  <CardTitle className="uppercase">{project.name}</CardTitle>
-                  <Badge className="gap-1" variant="outline">
-                    <span
-                      className={`w-2 h-2 ${getStatusColor(
-                        project.status
-                      )} rounded`}
-                    />
-                    {project.status}
-                  </Badge>
-                </div>
-                <CardDescription>{project.date}</CardDescription>
-              </CardHeader>
-            </Card>
-          </Link>
+          <ProjectCard key={project.id} project={project} />
         ))}
-        <Card className="w-fill cursor-pointer min-h-[150px] shadow-none border-dashed">
+        <Card className="w-fill cursor-pointer h-[150px] shadow-none border-dashed">
           <CardDescription className="h-full font-bold flex flex-col justify-center items-center">
             Nuevo Proyecto
             <Icons.plus />
