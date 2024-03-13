@@ -118,7 +118,7 @@ export default function ProjectsPage() {
         </DropdownMenu>
       </section>
 
-      <section className="p-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 overflow-scroll">
+      <section className="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 overflow-scroll">
         {filteredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}

@@ -12,8 +12,15 @@ import {
   HelpCircle,
   ChevronDown,
   ChevronLeft,
+  ChevronsLeftIcon,
   ChevronRight,
+  ChevronsRightIcon,
   Plus,
+  MoreHorizontal,
+  Settings2,
+  ChevronsUpDown,
+  ArrowDown,
+  ArrowUp,
   type XIcon as LucideIcon,
 } from "lucide-react";
 
@@ -32,8 +39,15 @@ export const Icons = {
   helpCircle: HelpCircle,
   chevronDown: ChevronDown,
   chevronLeft: ChevronLeft,
+  chevronsLeftIcon: ChevronsLeftIcon,
   chevronRight: ChevronRight,
+  chevronsRightIcon: ChevronsRightIcon,
   plus: Plus,
+  moreHorizontal: MoreHorizontal,
+  settings2: Settings2,
+  chevronsUpDown: ChevronsUpDown,
+  arrowDown: ArrowDown,
+  arrowUp: ArrowUp,
   logo: (props: LucideProps) => (
     <svg
       viewBox="0 0 238 240"
