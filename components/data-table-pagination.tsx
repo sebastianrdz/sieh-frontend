@@ -42,7 +42,7 @@ export function DataTablePagination<TData>({
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
-              {[10, 20, 30, 40, 50].map((pageSize) => (
+              {[5, 10, 20, 30, 40, 50].map((pageSize) => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
                 </SelectItem>
@@ -61,7 +61,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to first page</span>
+            <span className="hidden">Go to first page</span>
             <Icons.chevronsLeftIcon className="h-4 w-4" />
           </Button>
           <Button
@@ -70,7 +70,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to previous page</span>
+            <span className="hidden">Go to previous page</span>
             <Icons.chevronLeft className="h-4 w-4" />
           </Button>
           <Button
@@ -79,7 +79,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to next page</span>
+            <span className="hidden">Go to next page</span>
             <Icons.chevronRight className="h-4 w-4" />
           </Button>
           <Button
@@ -88,7 +88,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to last page</span>
+            <span className="hidden">Go to last page</span>
             <Icons.chevronsRightIcon className="h-4 w-4" />
           </Button>
         </div>

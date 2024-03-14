@@ -48,18 +48,22 @@ export const columns: ColumnDef<IProposalElement>[] = [
     enableSorting: false,
     enableHiding: false,
   },
+  // {
+  //   accessorKey: "id",
+  //   header: "ID",
+  //   cell: ({ row }) => {
+  //     const id = JSON.parse(JSON.stringify(row.getValue("id")));
+  //     return <div>{id}</div>;
+  //   },
+  // },
   {
     accessorKey: "description",
     header: "Descripción",
-    // cell: ({ row }) => {
-    //   const description = row.getValue("description");
-    //   return <div className="truncate">{description}</div>;
-    // },
     cell: ({ row }) => {
       const description = JSON.parse(
         JSON.stringify(row.getValue("description"))
       );
-      return <div className="truncate max-w-[600px]">{description}</div>;
+      return <div className="">{description}</div>;
     },
   },
   {

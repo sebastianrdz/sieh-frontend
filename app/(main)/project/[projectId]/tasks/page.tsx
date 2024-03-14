@@ -1,6 +1,17 @@
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 export default function Task() {
-  return <section>tareas</section>;
+  return (
+    <div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+      <div className="bg-red-500 min-h-48">hello</div>
+    </div>
+  );
 }

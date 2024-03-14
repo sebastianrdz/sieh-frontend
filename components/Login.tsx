@@ -151,7 +151,7 @@ export default function Login(props: Props) {
   }
 
   return (
-    <section className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-screen h-screen place-items-center">
+    <section className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-screen h-full place-items-center">
       <Icons.logo className=" text-primary w-full h-full max-w-[400px] max-h-[400px] min-w-[300px] min-h-[300px] p-20" />
       <div className="min-w-[200px] max-w-[400px] w-full p-5 space-y-4">
         <h1 className="text-3xl font-bold">Iniciar Sesión</h1>

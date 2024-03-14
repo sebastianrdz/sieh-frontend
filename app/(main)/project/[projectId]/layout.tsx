@@ -27,13 +27,12 @@ const Layout: React.FC<LayoutProps> = ({ children, params }) => {
   };
 
   return (
-    <section className="flex flex-col">
-      <div className="p-5 flex items-center gap-2.5 font-bold uppercase">
+    <section className="flex flex-col h-full">
+      <header className="p-5 flex items-center gap-2.5 font-bold uppercase">
         <Link href="/project">Proyectos</Link>
         <h3>/</h3>
         <h1>{params.projectId}</h1>
-      </div>
-
+      </header>
       <div className="flex text gap-2.5 p-5 border-b-[4px] border-primary">
         {tabs.map((tab: ProjectTab, index) => {
           return (
@@ -49,7 +48,7 @@ const Layout: React.FC<LayoutProps> = ({ children, params }) => {
           );
         })}
       </div>
-      <main className="flex-1 p-5">{children}</main>
+      {children}
     </section>
   );
 };

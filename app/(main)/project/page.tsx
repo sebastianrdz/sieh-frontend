@@ -86,9 +86,8 @@ export default function ProjectsPage() {
   }, [filter]);
 
   return (
-    <div className="flex flex-col h-full">
-      <h1 className="px-5 py-5">PROYECTOS</h1>
-
+    <>
+      <h1 className="p-5">PROYECTOS</h1>
       <section className="p-5">
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -129,6 +128,6 @@ export default function ProjectsPage() {
           </CardDescription>
         </Card>
       </section>
-    </div>
+    </>
   );
 }
