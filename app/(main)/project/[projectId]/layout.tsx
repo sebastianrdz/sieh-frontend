@@ -27,7 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ children, params }) => {
   };
 
   return (
-    <section className="flex flex-col h-full">
+    <section className="flex flex-col h-full w-full">
       <header className="p-5 flex items-center gap-2.5 font-bold uppercase">
         <Link href="/project">Proyectos</Link>
         <h3>/</h3>

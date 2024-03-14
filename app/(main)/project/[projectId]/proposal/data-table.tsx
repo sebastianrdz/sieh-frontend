@@ -70,8 +70,8 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <>
-      <div className="flex items-center p-4">
+    <div className="md:container">
+      <div className="flex items-center py-4 gap-5">
         <Input
           placeholder="Filter description..."
           value={
@@ -85,7 +85,7 @@ export function DataTable<TData, TValue>({
         <DataTableViewOptions table={table} />
       </div>
 
-      <div className="rounded-md border flex-1 h-full overflow-scroll">
+      <div className="rounded-md border overflow-auto">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -134,10 +134,10 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
+        <div className=" flex items-center border-t justify-end space-x-2 py-4 ">
+          <DataTablePagination table={table} />
+        </div>
       </div>
-      <div className=" flex items-center justify-end space-x-2 p-4 ">
-        <DataTablePagination table={table} />
-      </div>
-    </>
+    </div>
   );
 }

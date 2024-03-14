@@ -19,6 +19,7 @@ import { DataTableColumnHeader } from "@/components/data-table-column-header";
 // You can use a Zod schema here if you want.
 export interface IProposalElement {
   id: string;
+  title: string;
   description: string;
   price: number;
   stage: string;
@@ -51,10 +52,10 @@ export const columns: ColumnDef<IProposalElement>[] = [
   // {
   //   accessorKey: "id",
   //   header: "ID",
-  //   cell: ({ row }) => {
-  //     const id = JSON.parse(JSON.stringify(row.getValue("id")));
-  //     return <div>{id}</div>;
-  //   },
+  // },
+  // {
+  //   accessorKey: "title",
+  //   header: "Titulo",
   // },
   {
     accessorKey: "description",
@@ -63,7 +64,7 @@ export const columns: ColumnDef<IProposalElement>[] = [
       const description = JSON.parse(
         JSON.stringify(row.getValue("description"))
       );
-      return <div className="">{description}</div>;
+      return <div className="line-clamp-2 min-w-[400px]">{description}</div>;
     },
   },
   {
@@ -86,30 +87,17 @@ export const columns: ColumnDef<IProposalElement>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Etapa" />
     ),
-    // header: ({ column }) => {
-    //   return (
-    //     <Button
-    //       variant="ghost"
-    //       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-    //     >
-    //       Email
-    //       <Icons.chevronDown className="ml-2 h-4 w-4" />
-    //     </Button>
-    //   );
-    // },
   },
   {
     id: "actions",
     cell: ({ row }) => {
       const payment = row.original;
-      // console.log(payment);
 
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
-              {/* <MoreHorizontal className="h-4 w-4" /> */}
               <Icons.moreHorizontal width={24} className="min-w-6" />
             </Button>
           </DropdownMenuTrigger>
