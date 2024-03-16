@@ -14,17 +14,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/assets/icons";
 import { DataTableColumnHeader } from "@/components/data-table-column-header";
+import { IProposalElement } from "../data/schema";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export interface IProposalElement {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  stage: string;
-  actions: string;
-}
 
 export const columns: ColumnDef<IProposalElement>[] = [
   // {
@@ -91,7 +84,7 @@ export const columns: ColumnDef<IProposalElement>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      const proposalElement = row.original;
 
       return (
         <DropdownMenu>
@@ -102,15 +95,25 @@ export const columns: ColumnDef<IProposalElement>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+            <DropdownMenuLabel>Acciones</DropdownMenuLabel>
+            {/* <DropdownMenuSeparator /> */}
+            {/* <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(proposalElement.id)}
             >
               Copy payment ID
+            </DropdownMenuItem> */}
+            <DropdownMenuItem>
+              <Icons.eye width={16} className="mr-2" />
+              Detalles
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Icons.edit width={16} className="mr-2" />
+              Editar
+            </DropdownMenuItem>
+            <DropdownMenuItem className="text-red-500 focus:text-red-500">
+              <Icons.trash width={16} className="mr-2" />
+              Eliminar
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

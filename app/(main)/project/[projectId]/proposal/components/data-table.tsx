@@ -32,6 +32,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { DataTablePagination } from "@/components/data-table-pagination";
 import { DataTableViewOptions } from "@/components/data-table-view-options";
+import { DataTableSearchInput } from "@/components/data-table-search-input";
+import { DataTableExportButton } from "./data-table-export-button";
+import { DataTableNewBudgetEntryButton } from "./data-table-new-budget-entry";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -72,17 +75,10 @@ export function DataTable<TData, TValue>({
   return (
     <div className="md:container">
       <div className="flex items-center py-4 gap-5">
-        <Input
-          placeholder="Filter description..."
-          value={
-            (table.getColumn("description")?.getFilterValue() as string) ?? ""
-          }
-          onChange={(event) =>
-            table.getColumn("description")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        <DataTableViewOptions table={table} />
+        <DataTableSearchInput table={table} value="description" />
+        <DataTableNewBudgetEntryButton table={table} />
+        <DataTableExportButton table={table} />
+        {/* <DataTableViewOptions table={table} /> */}
       </div>
 
       <div className="rounded-md border overflow-auto">
@@ -128,7 +124,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  No hay resultados.
                 </TableCell>
               </TableRow>
             )}

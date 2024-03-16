@@ -2,6 +2,10 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { getStatusColor } from "../project-card";
 
 const tabs: ProjectTab[] = [
   {
@@ -28,10 +32,16 @@ const Layout: React.FC<LayoutProps> = ({ children, params }) => {
 
   return (
     <section className="flex flex-col h-full w-full">
-      <header className="p-5 flex items-center gap-2.5 font-bold uppercase">
-        <Link href="/project">Proyectos</Link>
+      <header className="p-5 flex items-center gap-2.5 font-bold">
+        <Link href="/project" className="uppercase">
+          Proyectos
+        </Link>
         <h3>/</h3>
-        <h1>{params.projectId}</h1>
+        <h1 className="uppercase">{params.projectId}</h1>
+        <Badge className="gap-1" variant="outline">
+          <span className={cn("w-2 h-2 rounded", getStatusColor("Activo"))} />
+          Activo
+        </Badge>
       </header>
       <div className="flex text gap-2.5 p-5 border-b-[4px] border-primary">
         {tabs.map((tab: ProjectTab, index) => {

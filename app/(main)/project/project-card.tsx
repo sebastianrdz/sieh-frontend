@@ -33,7 +33,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   );
 }
 
-const getStatusColor = (status: Status) => {
+export const getStatusColor = (status: Status) => {
   switch (status) {
     case "Activo":
       return "bg-green-500";

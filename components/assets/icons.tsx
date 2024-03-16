@@ -21,6 +21,10 @@ import {
   ChevronsUpDown,
   ArrowDown,
   ArrowUp,
+  Trash,
+  Edit,
+  Eye,
+  Download,
   type XIcon as LucideIcon,
 } from "lucide-react";
 
@@ -48,6 +52,10 @@ export const Icons = {
   chevronsUpDown: ChevronsUpDown,
   arrowDown: ArrowDown,
   arrowUp: ArrowUp,
+  trash: Trash,
+  edit: Edit,
+  eye: Eye,
+  download: Download,
   logo: (props: LucideProps) => (
     <svg
       viewBox="0 0 238 240"

@@ -1,5 +1,6 @@
-import { IProposalElement, columns } from "./columns";
-import { DataTable } from "./data-table";
+import { columns } from "./components/columns";
+import { DataTable } from "./components/data-table";
+import { IProposalElement } from "./data/schema";
 
 async function getData(): Promise<IProposalElement[]> {
   // Fetch data from your API here.
@@ -11,7 +12,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "2",
@@ -20,7 +20,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "3",
@@ -28,7 +27,6 @@ async function getData(): Promise<IProposalElement[]> {
       description: "Lorem ipsum dolor sit amet consectetur. Proin pulvin",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "1",
@@ -37,7 +35,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "2",
@@ -46,7 +43,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "3",
@@ -54,7 +50,6 @@ async function getData(): Promise<IProposalElement[]> {
       description: "Lorem ipsum dolor sit amet consectetur. Proin pulvin",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "1",
@@ -63,7 +58,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "2",
@@ -72,7 +66,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "3",
@@ -80,7 +73,6 @@ async function getData(): Promise<IProposalElement[]> {
       description: "Lorem ipsum dolor sit amet consectetur. Proin pulvin",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "1",
@@ -89,7 +81,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "2",
@@ -98,7 +89,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "3",
@@ -106,7 +96,6 @@ async function getData(): Promise<IProposalElement[]> {
       description: "Lorem ipsum dolor sit amet consectetur. Proin pulvin",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "1",
@@ -115,7 +104,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "2",
@@ -124,7 +112,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "3",
@@ -132,7 +119,6 @@ async function getData(): Promise<IProposalElement[]> {
       description: "Lorem ipsum dolor sit amet consectetur. Proin pulvin",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "1",
@@ -141,7 +127,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "2",
@@ -150,7 +135,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "3",
@@ -158,7 +142,6 @@ async function getData(): Promise<IProposalElement[]> {
       description: "Lorem ipsum dolor sit amet consectetur. Proin pulvin",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "1",
@@ -167,7 +150,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "2",
@@ -176,7 +158,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "3",
@@ -184,7 +165,6 @@ async function getData(): Promise<IProposalElement[]> {
       description: "Lorem ipsum dolor sit amet consectetur. Proin pulvin",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "1",
@@ -193,7 +173,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "2",
@@ -202,7 +181,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "3",
@@ -210,7 +188,6 @@ async function getData(): Promise<IProposalElement[]> {
       description: "Lorem ipsum dolor sit amet consectetur. Proin pulvin",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "1",
@@ -219,7 +196,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "2",
@@ -228,7 +204,6 @@ async function getData(): Promise<IProposalElement[]> {
         "Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.Lorem ipsum dolor sit amet consectetur. Proin pulvinar magna pellentesque arcu velit ultrices velit facilisi pellentesque. Massa urna mattis cursus etiam nibh imperdiet semper. Erat neque nunc leo mauris quisque quisque amet augue. Eu eu quis accumsan massa eu.",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     {
       id: "3",
@@ -236,7 +211,6 @@ async function getData(): Promise<IProposalElement[]> {
       description: "Lorem ipsum dolor sit amet consectetur. Proin pulvin",
       price: 100,
       stage: "Etapa 1",
-      actions: "",
     },
     // ...
   ];
