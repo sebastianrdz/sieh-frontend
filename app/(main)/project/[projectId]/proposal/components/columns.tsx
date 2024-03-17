@@ -15,6 +15,19 @@ import {
 import { Icons } from "@/components/assets/icons";
 import { DataTableColumnHeader } from "@/components/data-table-column-header";
 import { IProposalElement } from "../data/schema";
+import { DataTableActions } from "./data-table-actions";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { useState } from "react";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -86,37 +99,7 @@ export const columns: ColumnDef<IProposalElement>[] = [
     cell: ({ row }) => {
       const proposalElement = row.original;
 
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <Icons.moreHorizontal width={24} className="min-w-6" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Acciones</DropdownMenuLabel>
-            {/* <DropdownMenuSeparator /> */}
-            {/* <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(proposalElement.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem> */}
-            <DropdownMenuItem>
-              <Icons.eye width={16} className="mr-2" />
-              Detalles
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Icons.edit width={16} className="mr-2" />
-              Editar
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-red-500 focus:text-red-500">
-              <Icons.trash width={16} className="mr-2" />
-              Eliminar
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <DataTableActions row={proposalElement} />;
     },
   },
 ];

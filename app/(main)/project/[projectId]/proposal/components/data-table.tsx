@@ -22,29 +22,25 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import { DataTablePagination } from "@/components/data-table-pagination";
-import { DataTableViewOptions } from "@/components/data-table-view-options";
 import { DataTableSearchInput } from "@/components/data-table-search-input";
 import { DataTableExportButton } from "./data-table-export-button";
-import { DataTableNewBudgetEntryButton } from "./data-table-new-budget-entry";
+import { DataTableNewBudgetEntryButton } from "./data-table-new-budget-entry-button";
+import { IProposalElement } from "../data/schema";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  defaultData: TData[];
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  defaultData,
 }: DataTableProps<TData, TValue>) {
+  const [data, setData] = React.useState(() => [...defaultData]);
+  const [originalData, setOriginalData] = React.useState(() => [
+    ...defaultData,
+  ]);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -69,6 +65,28 @@ export function DataTable<TData, TValue>({
       columnFilters,
       columnVisibility,
       rowSelection,
+    },
+    meta: {
+      addRow: (element: any) => {
+        const newRow: IProposalElement = {
+          id: String(Math.floor(Math.random() * 10000)),
+          title: "element.title",
+          description: element.description,
+          price: element.price,
+          stage: element.stage,
+        };
+        const setFunc = (old: any) => [...old, newRow];
+        setData(setFunc);
+        setOriginalData(setFunc);
+      },
+      // removeRow: (rowIndex: number) => {
+      //   const setFilterFunc = (old: IProposalElement[]) =>
+      //     old.filter(
+      //       (_row: IProposalElement, index: number) => index !== rowIndex
+      //     );
+      //   setData(setFilterFunc);
+      //   setOriginalData(setFilterFunc);
+      // },
     },
   });
 

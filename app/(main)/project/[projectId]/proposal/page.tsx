@@ -219,5 +219,5 @@ async function getData(): Promise<IProposalElement[]> {
 export default async function Proposal() {
   const data = await getData();
 
-  return <DataTable columns={columns} data={data} />;
+  return <DataTable columns={columns} defaultData={data} />;
 }
