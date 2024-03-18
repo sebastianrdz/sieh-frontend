@@ -61,7 +61,7 @@ export function DataTableBugetEntryDialog<TData>({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    // table ? meta?.addRow(values) : console.log(values);
+    table ? (meta as any)?.addRow(values) : console.log(values);
     setOpen(false);
     form.reset();
     toast({
