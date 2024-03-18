@@ -18,7 +18,7 @@ interface DataTableBugetEntryAlertDialogProps<TData> {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   row?: IProposalElement;
-  table?: Table<TData>;
+  table: Table<TData>;
 }
 
 export function DataTableBugetEntryAlertDialog<TData>({
@@ -28,10 +28,12 @@ export function DataTableBugetEntryAlertDialog<TData>({
   table,
 }: DataTableBugetEntryAlertDialogProps<TData>) {
   const { toast } = useToast();
+  const meta = table?.options.meta;
 
   async function onSubmit() {
+    await (meta as any).removeRow(row?.id);
+
     setOpen(false);
-    // table?.options.meta?.removeRow(row?.index);
     toast({
       title: "Apartado eliminado",
       description: "El apartado ha sido eliminado exitosamente",

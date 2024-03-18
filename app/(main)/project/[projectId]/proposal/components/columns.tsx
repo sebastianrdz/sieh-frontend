@@ -96,10 +96,10 @@ export const columns: ColumnDef<IProposalElement>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => {
+    cell: ({ table, row }) => {
       const proposalElement = row.original;
 
-      return <DataTableActions row={proposalElement} />;
+      return <DataTableActions row={proposalElement} table={table} />;
     },
   },
 ];

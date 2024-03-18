@@ -1,6 +1,6 @@
 "use client";
+import { Table } from "@tanstack/react-table";
 import { Icons } from "@/components/assets/icons";
-
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import {
@@ -16,9 +16,13 @@ import { DataTableBugetEntryAlertDialog } from "./data-table-budget-entry-alert-
 
 interface DataTableActionsProps<TData> {
   row: IProposalElement;
+  table: Table<TData>;
 }
 
-export function DataTableActions<TData>({ row }: DataTableActionsProps<TData>) {
+export function DataTableActions<TData>({
+  row,
+  table,
+}: DataTableActionsProps<TData>) {
   const [open, setOpen] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
 
@@ -47,11 +51,17 @@ export function DataTableActions<TData>({ row }: DataTableActionsProps<TData>) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <DataTableBugetEntryDialog open={open} setOpen={setOpen} row={row} />
+      <DataTableBugetEntryDialog
+        open={open}
+        setOpen={setOpen}
+        row={row}
+        table={table}
+      />
       <DataTableBugetEntryAlertDialog
         open={openAlert}
         setOpen={setOpenAlert}
         row={row}
+        table={table}
       />
     </>
   );

@@ -75,18 +75,39 @@ export function DataTable<TData, TValue>({
           price: element.price,
           stage: element.stage,
         };
+        console.log(newRow);
         const setFunc = (old: any) => [...old, newRow];
         setData(setFunc);
         setOriginalData(setFunc);
       },
-      // removeRow: (rowIndex: number) => {
-      //   const setFilterFunc = (old: IProposalElement[]) =>
-      //     old.filter(
-      //       (_row: IProposalElement, index: number) => index !== rowIndex
-      //     );
-      //   setData(setFilterFunc);
-      //   setOriginalData(setFilterFunc);
-      // },
+      editRow: (element: any, rowId: string) => {
+        const setFilterFunc = (old: any) =>
+          old.map((row: IProposalElement) => {
+            if (row.id === rowId) {
+              return { ...row, ...element };
+            }
+            return row;
+          });
+        setData(setFilterFunc);
+        setOriginalData(setFilterFunc);
+      },
+      removeRow: (rowId: string) => {
+        console.log("hey");
+        // const setFilterFunc = (old: any) =>
+        //   old.filter(
+        //     (_row: IProposalElement, index: number) => index !== rowIndex
+        //   );
+        const setFilterFunc = (old: any) => {
+          const newData = old.filter(
+            (row: IProposalElement) => row.id !== rowId
+          );
+          // console.log(newData, old, rowId);
+          return newData;
+        };
+        console.log(rowId);
+        setData(setFilterFunc);
+        setOriginalData(setFilterFunc);
+      },
     },
   });
 
@@ -95,7 +116,7 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4 gap-5">
         <DataTableSearchInput table={table} value="description" />
         <DataTableNewBudgetEntryButton table={table} />
-        <DataTableExportButton table={table} />
+        <DataTableExportButton table={table} data={data} />
         {/* <DataTableViewOptions table={table} /> */}
       </div>
 

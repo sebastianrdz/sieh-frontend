@@ -30,7 +30,7 @@ interface DataTableBugetEntryDialogProps<TData> {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   row?: IProposalElement;
-  table?: Table<TData>;
+  table: Table<TData>;
 }
 
 const formSchema = z.object({
@@ -60,8 +60,7 @@ export function DataTableBugetEntryDialog<TData>({
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    table ? (meta as any)?.addRow(values) : console.log(values);
+    row ? (meta as any).editRow(values, row.id) : (meta as any).addRow(values);
     setOpen(false);
     form.reset();
     toast({
