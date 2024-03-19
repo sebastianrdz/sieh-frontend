@@ -7,13 +7,14 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { IProject } from "../data/schema";
 
 interface ProjectCardProps {
   project: IProject;
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const { id, name, status, date } = project;
+  const { id, name, status, startDate, endDate } = project;
 
   return (
     <Link key={id} href={`project/${name}/proposal`} className="h-fit">
@@ -26,7 +27,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {status}
             </Badge>
           </div>
-          <CardDescription>{date}</CardDescription>
+          <CardDescription>
+            {startDate.toDateString()} - {endDate.toDateString()}
+          </CardDescription>
         </CardHeader>
       </Card>
     </Link>

@@ -1,4 +1,4 @@
-// type Status = "Activo" | "Terminado" | "Cotizacion";
+type Status = "Activo" | "Terminado" | "Cotizacion";
 
 // // interface IProject {
 // //   id: string;
