@@ -1,5 +1,4 @@
 "use client";
-import { Table } from "@tanstack/react-table";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import {
@@ -40,13 +39,12 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Icons } from "@/components/assets/icons";
-// import { CalendarIcon, Calendar } from "lucide-react";
+import { IProject } from "../data/schema";
 
 interface NewProjectDialogProps<TData> {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  // row?: IProposalElement;
-  // table: Table<TData>;
+  setData: Dispatch<SetStateAction<IProject[]>>;
 }
 
 const formSchema = z.object({
@@ -60,6 +58,7 @@ const formSchema = z.object({
 export function NewProjectDialog<TData>({
   open,
   setOpen,
+  setData,
 }: NewProjectDialogProps<TData>) {
   const { toast } = useToast();
 
@@ -75,6 +74,7 @@ export function NewProjectDialog<TData>({
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setData((prev) => [...prev, { ...values, id: `${prev.length + 1}` }]);
     setOpen(false);
     form.reset();
     toast({

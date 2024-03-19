@@ -1,13 +1,7 @@
 "use client";
 import { Icons } from "@/components/assets/icons";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardDescription } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,11 +10,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import ProjectCard from "./components/project-card";
 import { IProject } from "./data/schema";
-import { filterDropdownValues, projects } from "./data/data";
+import { filterDropdownValues } from "./data/data";
 import { NewProjectDialog } from "./components/new-project-dialog";
+import { projects } from "./data/seed";
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<string>("Todo");
@@ -72,7 +66,7 @@ export default function ProjectsPage() {
         ))}
         <Card
           onClick={() => setOpen(true)}
-          className="w-fill cursor-pointer h-[150px] shadow-none border-dashed"
+          className="w-fill cursor-pointer min-h-[198px] max-h-[198px]  shadow-none border-dashed"
         >
           <CardDescription className="h-full font-bold flex flex-col justify-center items-center">
             Nuevo Proyecto
@@ -81,7 +75,11 @@ export default function ProjectsPage() {
         </Card>
       </section>
 
-      <NewProjectDialog open={open} setOpen={setOpen} />
+      <NewProjectDialog
+        open={open}
+        setOpen={setOpen}
+        setData={setFilteredProjects}
+      />
     </>
   );
 }
