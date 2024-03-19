@@ -70,7 +70,6 @@ export function DataTable<TData, TValue>({
       addRow: (element: any) => {
         const newRow: IProposalElement = {
           id: String(Math.floor(Math.random() * 10000)),
-          title: "element.title",
           description: element.description,
           price: element.price,
           stage: element.stage,
@@ -92,19 +91,9 @@ export function DataTable<TData, TValue>({
         setOriginalData(setFilterFunc);
       },
       removeRow: (rowId: string) => {
-        console.log("hey");
-        // const setFilterFunc = (old: any) =>
-        //   old.filter(
-        //     (_row: IProposalElement, index: number) => index !== rowIndex
-        //   );
         const setFilterFunc = (old: any) => {
-          const newData = old.filter(
-            (row: IProposalElement) => row.id !== rowId
-          );
-          // console.log(newData, old, rowId);
-          return newData;
+          return old.filter((row: IProposalElement) => row.id !== rowId);
         };
-        console.log(rowId);
         setData(setFilterFunc);
         setOriginalData(setFilterFunc);
       },
@@ -113,11 +102,10 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="md:container">
-      <div className="flex items-center py-4 gap-5">
+      <div className="flex items-center py-4 gap-2 sm:gap-5">
         <DataTableSearchInput table={table} value="description" />
         <DataTableNewBudgetEntryButton table={table} />
         <DataTableExportButton table={table} data={data} />
-        {/* <DataTableViewOptions table={table} /> */}
       </div>
 
       <div className="rounded-md border overflow-auto">

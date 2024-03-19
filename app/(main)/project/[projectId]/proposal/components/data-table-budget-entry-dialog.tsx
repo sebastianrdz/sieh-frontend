@@ -25,6 +25,13 @@ import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { IProposalElement } from "../data/schema";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface DataTableBugetEntryDialogProps<TData> {
   open: boolean;
@@ -122,9 +129,23 @@ export function DataTableBugetEntryDialog<TData>({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Etapa</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Etapa 1" {...field} />
-                  </FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Seleciona una etapa" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent side="bottom">
+                      {["Etapa 1", "Etapa 2", "Etapa 3"].map((stage) => (
+                        <SelectItem key={stage} value={`${stage}`}>
+                          {stage}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

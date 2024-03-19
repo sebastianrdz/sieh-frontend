@@ -2,6 +2,12 @@
 
 import { Icons } from "@/components/assets/icons";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Table } from "@tanstack/react-table";
 import * as XLSX from "xlsx";
 
@@ -22,9 +28,18 @@ export function DataTableExportButton<TData>({
   };
 
   return (
-    <Button onClick={downloadExcel} variant="outline">
-      <Icons.download width={16} className="mr-2" />
-      Exportar
-    </Button>
+    <TooltipProvider>
+      <Tooltip disableHoverableContent>
+        <TooltipTrigger asChild>
+          <Button onClick={downloadExcel} variant="outline" className="gap-2">
+            <Icons.download width={16} className="min-w-4" />
+            <div className="hidden sm:flex">Exportar</div>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent className="flex sm:hidden">
+          <div>Exportar</div>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

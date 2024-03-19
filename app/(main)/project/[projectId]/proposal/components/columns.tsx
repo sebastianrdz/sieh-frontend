@@ -59,10 +59,6 @@ export const columns: ColumnDef<IProposalElement>[] = [
   //   accessorKey: "id",
   //   header: "ID",
   // },
-  // {
-  //   accessorKey: "title",
-  //   header: "Titulo",
-  // },
   {
     accessorKey: "description",
     header: "Descripción",
