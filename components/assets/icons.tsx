@@ -25,6 +25,7 @@ import {
   Edit,
   Eye,
   Download,
+  CalendarDaysIcon,
   type XIcon as LucideIcon,
 } from "lucide-react";
 
@@ -56,6 +57,7 @@ export const Icons = {
   edit: Edit,
   eye: Eye,
   download: Download,
+  calendarDaysIcon: CalendarDaysIcon,
   logo: (props: LucideProps) => (
     <svg
       viewBox="0 0 238 240"

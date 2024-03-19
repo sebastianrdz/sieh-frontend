@@ -17,63 +17,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import ProjectCard from "./project-card";
-
-const projects: IProject[] = [
-  {
-    id: "1",
-    name: "jumex",
-    status: "Activo",
-    date: "Ene 17 - Mar 3",
-    description: "Deploy your new project in one-click.",
-  },
-  {
-    id: "2",
-    name: "cemex",
-    status: "Activo",
-    date: "Ene 17 - Mar 3",
-    description: "Deploy your new project in one-click.",
-  },
-  {
-    id: "3",
-    name: "amazon",
-    status: "Cotizacion",
-    date: "Ene 17 - Mar 3",
-    description: "Deploy your new project in one-click.",
-  },
-  {
-    id: "4",
-    name: "google",
-    status: "Cotizacion",
-    date: "Ene 17 - Mar 3",
-    description: "Deploy your new project in one-click.",
-  },
-  {
-    id: "5",
-    name: "meta",
-    status: "Terminado",
-    date: "Ene 17 - Mar 3",
-    description: "Deploy your new project in one-click.",
-  },
-];
-
-const filterDropdownValues: IFilterDropdownValue[] = [
-  {
-    name: "Todo",
-  },
-  {
-    name: "Activo",
-  },
-  {
-    name: "Terminado",
-  },
-  {
-    name: "Cotizacion",
-  },
-];
+import ProjectCard from "./components/project-card";
+import { IProject } from "./data/schema";
+import { filterDropdownValues, projects } from "./data/data";
+import { NewProjectDialog } from "./components/new-project-dialog";
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<string>("Todo");
+  const [open, setOpen] = useState<boolean>(false);
   const [filteredProjects, setFilteredProjects] =
     useState<IProject[]>(projects);
 
@@ -100,18 +51,16 @@ export default function ProjectsPage() {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-36">
             <DropdownMenuGroup>
-              {filterDropdownValues.map(
-                (value: IFilterDropdownValue, index) => {
-                  return (
-                    <DropdownMenuItem
-                      key={index}
-                      onClick={() => setFilter(value.name)}
-                    >
-                      <p>{value.name}</p>
-                    </DropdownMenuItem>
-                  );
-                }
-              )}
+              {filterDropdownValues.map((value, index) => {
+                return (
+                  <DropdownMenuItem
+                    key={index}
+                    onClick={() => setFilter(value.name)}
+                  >
+                    <p>{value.name}</p>
+                  </DropdownMenuItem>
+                );
+              })}
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -121,13 +70,18 @@ export default function ProjectsPage() {
         {filteredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
-        <Card className="w-fill cursor-pointer h-[150px] shadow-none border-dashed">
+        <Card
+          onClick={() => setOpen(true)}
+          className="w-fill cursor-pointer h-[150px] shadow-none border-dashed"
+        >
           <CardDescription className="h-full font-bold flex flex-col justify-center items-center">
             Nuevo Proyecto
             <Icons.plus />
           </CardDescription>
         </Card>
       </section>
+
+      <NewProjectDialog open={open} setOpen={setOpen} />
     </>
   );
 }
