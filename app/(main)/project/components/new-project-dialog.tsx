@@ -41,9 +41,10 @@ import { Calendar } from "@/components/ui/calendar";
 import { Icons } from "@/components/assets/icons";
 import { IProject } from "../data/schema";
 
-interface NewProjectDialogProps<TData> {
+interface NewProjectDialogProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  data?: IProject;
   setData: Dispatch<SetStateAction<IProject[]>>;
 }
 
@@ -55,31 +56,40 @@ const formSchema = z.object({
   description: z.string(),
 });
 
-export function NewProjectDialog<TData>({
+export function NewProjectDialog({
   open,
   setOpen,
+  data,
   setData,
-}: NewProjectDialogProps<TData>) {
+}: NewProjectDialogProps) {
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      status: "Cotizacion",
-      startDate: undefined,
-      endDate: undefined,
-      description: "",
+      name: data ? data.name : "",
+      status: data ? data.status : undefined,
+      startDate: data ? data.startDate : undefined,
+      endDate: data ? data.endDate : undefined,
+      description: data ? data.description : "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setData((prev) => [...prev, { ...values, id: `${prev.length + 1}` }]);
+    data
+      ? setData((prev) => {
+          const index = prev.findIndex((project) => project.id === data.id);
+          prev[index] = { ...values, id: data.id };
+          return [...prev];
+        })
+      : setData((prev) => [...prev, { ...values, id: `${prev.length + 1}` }]);
     setOpen(false);
     form.reset();
     toast({
-      title: "Proeycto creado",
-      description: "El proeycto ha sido creado",
+      title: data ? "Proyecto editado" : "Proyecto creado",
+      description: data
+        ? "El proyecto ha sido editado "
+        : "El proyecto ha sido creado",
     });
   }
 
