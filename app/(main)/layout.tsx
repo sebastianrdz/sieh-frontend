@@ -28,9 +28,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   });
 
   return (
-    <div className="flex flex-1 h-full w-full">
+    <div className="flex flex-1 h-full w-full overflow-hidden">
       <LeftNavigationMenu open={open} setOpen={setOpen} />
-      <div className="flex-1 flex flex-col overflow-auto">
+      <div className="flex-1 flex flex-col overflow-auto min-w-[320px]">
         <div className="flex p-5 items-center gap-2.5">
           <Button size="icon" variant="ghost" onClick={() => setOpen(!open)}>
             <Icons.menu
