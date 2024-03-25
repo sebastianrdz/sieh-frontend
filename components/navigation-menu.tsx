@@ -1,6 +1,6 @@
 "use client"; // Error components must be Client Components
 
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { usePathname, useRouter } from "next/navigation";
@@ -61,13 +61,11 @@ const navigationItems: IMenuItem[] = [
 
 interface NavigationMenuButtonProps {
   menuItem: IMenuItem;
-  isMenuCompact?: boolean;
   onClick?: () => void;
 }
 
 const NavigationMenuButton = ({
   menuItem,
-  isMenuCompact,
   onClick,
 }: NavigationMenuButtonProps) => {
   const router = useRouter();
@@ -82,38 +80,43 @@ const NavigationMenuButton = ({
       size="lg"
       className={cn(
         "w-full flex rounded-none justify-start text-md font-bold py-8 gap-3",
-        menuItem.className,
-        isMenuCompact && "px-0 justify-center"
+        menuItem.className
       )}
-      onClick={onClick ?? (() => router.push("/" + menuItem.href))}
+      onClick={onClick ?? (() => router.push(`/${menuItem.href}`))}
     >
       {menuItem.icon}
-      <h3 className={isMenuCompact ? "hidden" : "flex"}>{menuItem.text}</h3>
+      <h3>{menuItem.text}</h3>
     </Button>
   );
 };
 
-export const LeftNavigationMenu: React.FC = () => {
-  const [isMenuCompact, setIsMenuCompact] = useState(true);
+interface LeftNavigationMenuProps {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (window.innerWidth <= 768) {
-  //       setIsMenuCompact(true);
-  //     }
-  //   };
+export const LeftNavigationMenu = ({
+  open,
+  setOpen,
+}: LeftNavigationMenuProps) => {
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setOpen(true);
+      }
+    };
 
-  //   window.addEventListener("resize", handleResize);
-  //   handleResize();
+    window.addEventListener("resize", handleResize);
+    handleResize();
 
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <nav
       className={cn(
-        "flex-col transition-all duration-500 overflow-hidden bg-background shadow-md shadow-secondary-foreground w-[250px] min-w-[250px] pt-5 z-10 hidden md:flex",
-        isMenuCompact && "min-w-[70px] w-[70px] md:min-w-[80px]"
+        "flex flex-col transition-all duration-500 overflow-hidden bg-background border-r w-[250px] min-w-[250px] pt-2.5 z-10",
+        open && "min-w-0 w-0"
       )}
     >
       <ul className="flex flex-col">
@@ -121,36 +124,20 @@ export const LeftNavigationMenu: React.FC = () => {
           .filter((item) => item.href !== "settings")
           .map((item, index) => (
             <li key={index}>
-              <NavigationMenuButton
-                menuItem={item}
-                isMenuCompact={isMenuCompact}
-              />
+              <NavigationMenuButton menuItem={item} />
             </li>
           ))}
       </ul>
 
-      <Button
-        variant="outline"
-        size="icon"
-        className="rounded-full mt-auto mx-auto hidden md:flex"
-        onClick={() => setIsMenuCompact(!isMenuCompact)}
-      >
-        <Icons.chevronLeft
-          className={`min-w-6 ${isMenuCompact && "rotate-180"}`}
-        />
-      </Button>
-
       <section className="mt-auto">
         <NavigationMenuButton
           menuItem={navigationItems[navigationItems.length - 1]}
-          isMenuCompact={isMenuCompact}
         />
         <NavigationMenuButton
           menuItem={{
             icon: <Icons.logOut width={24} className="min-w-6" />,
             text: "Cerrar Sesión",
           }}
-          isMenuCompact={isMenuCompact}
           onClick={() => signOut()}
         />
       </section>

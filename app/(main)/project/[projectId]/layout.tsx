@@ -27,7 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ children, params }) => {
   };
 
   return (
-    <section className="flex flex-col h-full w-full">
+    <section className="flex flex-col h-full w-full ">
       <div className="flex text gap-2.5 p-5 border-b-[4px] border-primary">
         {tabs.map((tab: ProjectTab, index) => {
           return (
