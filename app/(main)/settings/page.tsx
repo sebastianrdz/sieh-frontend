@@ -9,7 +9,6 @@ export default async function SettingsPage() {
 
   return (
     <div>
-      <h1 className="px-5 py-5">AJUSTES</h1>
       <section className="flex p-5 gap-2.5">
         <h2 className="w-[200px] font-bold">Perfil</h2>
         <span className="bg-primary bg min-w-0.5" />

@@ -1,20 +1,18 @@
 "use client";
 import { Icons } from "@/components/assets/icons";
-import { Button } from "@/components/ui/button";
 import { Card, CardDescription } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 import ProjectCard from "./components/project-card";
 import { IProject } from "./data/schema";
-import { filterDropdownValues } from "./data/data";
 import { NewProjectDialog } from "./components/new-project-dialog";
 import { projects } from "./data/seed";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<string>("Todo");
@@ -32,35 +30,22 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <h1 className="p-5">PROYECTOS</h1>
       <section className="p-5">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <div className="flex justify-start">
-              <Button className="gap-1 shadow-lg" variant="outline">
-                <p className="font-bold">{filter}</p>
-                <Icons.chevronDown />
-              </Button>
-            </div>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-36">
-            <DropdownMenuGroup>
-              {filterDropdownValues.map((value, index) => {
-                return (
-                  <DropdownMenuItem
-                    key={index}
-                    onClick={() => setFilter(value.name)}
-                  >
-                    <p>{value.name}</p>
-                  </DropdownMenuItem>
-                );
-              })}
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Select onValueChange={setFilter} defaultValue={"Todo"}>
+          <SelectTrigger className="w-fit gap-2.5">
+            <SelectValue placeholder="Seleciona una status" />
+          </SelectTrigger>
+          <SelectContent side="bottom">
+            {["Todo", "Activo", "Terminado", "Cotizacion"].map((stage) => (
+              <SelectItem key={stage} value={`${stage}`}>
+                {stage}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </section>
 
-      <section className="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 overflow-scroll">
+      <section className="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredProjects.map((project) => (
           <ProjectCard
             key={project.id}

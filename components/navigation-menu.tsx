@@ -96,23 +96,23 @@ const NavigationMenuButton = ({
 export const LeftNavigationMenu: React.FC = () => {
   const [isMenuCompact, setIsMenuCompact] = useState(true);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setIsMenuCompact(true);
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth <= 768) {
+  //       setIsMenuCompact(true);
+  //     }
+  //   };
 
-    window.addEventListener("resize", handleResize);
-    handleResize();
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   return (
     <nav
       className={cn(
-        "flex flex-col transition-all duration-500 overflow-hidden bg-background shadow-md shadow-secondary-foreground w-[250px] min-w-[250px] pt-5 z-10 ",
+        "flex-col transition-all duration-500 overflow-hidden bg-background shadow-md shadow-secondary-foreground w-[250px] min-w-[250px] pt-5 z-10 hidden md:flex",
         isMenuCompact && "min-w-[70px] w-[70px] md:min-w-[80px]"
       )}
     >
