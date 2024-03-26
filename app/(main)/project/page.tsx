@@ -30,7 +30,7 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <section className="p-5">
+      <section className="px-5 py-2.5">
         <Select onValueChange={setFilter} defaultValue={"Todo"}>
           <SelectTrigger className="w-fit gap-2.5">
             <SelectValue placeholder="Seleciona una status" />

@@ -27,6 +27,7 @@ import { DataTableSearchInput } from "@/components/data-table-search-input";
 import { DataTableExportButton } from "./data-table-export-button";
 import { DataTableNewBudgetEntryButton } from "./data-table-new-budget-entry-button";
 import { IProposalElement } from "../data/schema";
+import { DataTableTotalCount } from "./data-table-total-count";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -97,6 +98,9 @@ export function DataTable<TData, TValue>({
         setData(setFilterFunc);
         setOriginalData(setFilterFunc);
       },
+      getPriceSum: () => {
+        return data.reduce((acc, row) => acc + (row as any).price, 0);
+      },
     },
   });
 
@@ -160,6 +164,9 @@ export function DataTable<TData, TValue>({
         <div className=" flex items-center border-t justify-end space-x-2 py-4 ">
           <DataTablePagination table={table} />
         </div>
+      </div>
+      <div className=" flex items-center justify-end space-x-2 py-4 mt-auto">
+        <DataTableTotalCount table={table} />
       </div>
     </div>
   );
